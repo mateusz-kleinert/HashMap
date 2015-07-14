@@ -6,21 +6,23 @@ class HashMap {
 	public:
 		void HashMap(int size = 50);
 		~HashMap();
-		V operator [](K key);
-		V operator [](K key, V value);
-		V get(K key);
-		K put(V value);
+		V operator [](const K & key);
+		V operator [](const K & key, const V & value);
+		V get(const K & key);
+		K put(const V & value);
 	private:
 		class BucketNode {
 			public:
-				void BucketNode(V value);
+				void BucketNode(const V & value);
 				~BucketNode();
 				V getValue();
 			private:
+				void deleteList(BucketNode* node);
 				V value;
 				BucketNode* next;
 		};
-		BucketNode* buckets;
+		BucketNode** buckets;
+		int size;
 };
 
 #endif
